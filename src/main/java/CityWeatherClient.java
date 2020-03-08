@@ -15,8 +15,11 @@ class CityWeatherClient {
     private static String url = "https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
 
 
-    public static CityWeatherDetails getCityWeather(String city,String appkey) {
+    public static CityWeatherDetails getCityWeather(String city, String appkey) {
 
+        if (city == null || city.isEmpty()|| appkey==null || appkey.isEmpty()) {
+            throw new RuntimeException("getCityWeather  params are null or empty");
+        }
         String urlFormatted = String.format(url, city, appkey);
         JSONObject myRes = getCityWeather(urlFormatted);
 
@@ -30,8 +33,8 @@ class CityWeatherClient {
 
             return new CityWeatherDetails(city, sunset, sunrise, temperature);
 
-        }catch(ClassCastException e){
-            throw new RuntimeException("There was a problem with one of the City Weather details ",e) ;
+        } catch (ClassCastException e) {
+            throw new RuntimeException("There was a problem with one of the City Weather details ", e);
         }
     }
 
@@ -45,7 +48,9 @@ class CityWeatherClient {
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
 
-
+        if (url == null || url.isEmpty()) {
+            throw new RuntimeException("Url is null or empty");
+        }
         HttpGet get = new HttpGet(url);
 
         int attempts = 0;
