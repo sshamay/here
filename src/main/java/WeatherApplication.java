@@ -7,11 +7,14 @@ class WeatherApplication {
 
     private static final String appKey = "59fb36f901b9798c53b88d1d8bd0a3cd";
 
+
+
     public static void main(String[] args) {
 
         String[] listOfCities = {"Tel+Aviv", "Singapore", "Auckland", "Ushuaia", "Miami", "London", "Berlin", "Reykjavik", "Cape+Town", "Kathmandu"};
         CityWeatherDetails shortestDaylightCity = null;
         CityWeatherDetails longestDaylightCity = null;
+
 
         System.out.println("Weather Application Starts to scan  " + listOfCities.length + " Cities.....");
 
