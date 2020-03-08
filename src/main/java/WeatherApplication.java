@@ -16,7 +16,6 @@ class WeatherApplication {
         CityWeatherDetails shortestDaylightCity = null;
         CityWeatherDetails longestDaylightCity = null;
 
-
         System.out.println("Weather Application Starts to scan  " + listOfCities.length + " Cities.....");
 
         // get the cities weather details
