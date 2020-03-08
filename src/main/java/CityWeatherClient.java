@@ -38,6 +38,7 @@ class CityWeatherClient {
         }
     }
 
+
     private static JSONObject getCityWeather(String url) {
 
         HttpResponse response = null;
