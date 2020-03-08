@@ -9,6 +9,7 @@ class WeatherApplication {
 
 
 
+
     public static void main(String[] args) {
 
         String[] listOfCities = {"Tel+Aviv", "Singapore", "Auckland", "Ushuaia", "Miami", "London", "Berlin", "Reykjavik", "Cape+Town", "Kathmandu"};

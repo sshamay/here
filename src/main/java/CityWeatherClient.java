@@ -37,7 +37,7 @@ class CityWeatherClient {
             throw new RuntimeException("There was a problem with one of the City Weather details ", e);
         }
     }
- 
+
     private static JSONObject getCityWeather(String url) {
 
         HttpResponse response = null;

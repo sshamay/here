@@ -13,6 +13,7 @@ public class CityWeatherDetails {
 
     }
 
+
     public Long getCityDaylightDuration() {
         return (this.sunset - this.sunrise);
     }
