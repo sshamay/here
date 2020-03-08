@@ -39,6 +39,8 @@ class CityWeatherClient {
 
         HttpResponse response = null;
         final int numOfRetries = 5;
+        Integer SLEEP_TIME = 5000;
+
         String entityText;
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
@@ -66,7 +68,7 @@ class CityWeatherClient {
                     System.out.println("Failed getting weather sample,  attempt " + attempts);
                     e.printStackTrace();
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(SLEEP_TIME);
                     } catch (InterruptedException e1) {
                         System.out.println("Sleep interrupted error");
                     }

@@ -9,11 +9,11 @@ class WeatherApplication {
 
     public static void main(String[] args) {
 
-        String [] listOfCities = {"Tel+Aviv", "Singapore", "Auckland", "Ushuaia", "Miami", "London", "Berlin", "Reykjavik", "Cape+Town", "Kathmandu"};
-        CityWeatherDetails shortestDaylightCity=null;
-        CityWeatherDetails longestDaylightCity=null;
+        String[] listOfCities = {"Tel+Aviv", "Singapore", "Auckland", "Ushuaia", "Miami", "London", "Berlin", "Reykjavik", "Cape+Town", "Kathmandu"};
+        CityWeatherDetails shortestDaylightCity = null;
+        CityWeatherDetails longestDaylightCity = null;
 
-        System.out.println("Weather Application Starts to scan  " + listOfCities.length+ " Cities.....");
+        System.out.println("Weather Application Starts to scan  " + listOfCities.length + " Cities.....");
 
         // get the cities weather details
         ArrayList<CityWeatherDetails> citiesWeatherDetails = getCitiesWeather(listOfCities);
@@ -35,12 +35,11 @@ class WeatherApplication {
             throwable.printStackTrace();
         }
 
-        if(citiesWeatherDetails.size()!=listOfCities.length)
-        {
-            System.out.println("There were error in reading some of the cities, the result refer only to "+citiesWeatherDetails.size() + "out of: "+ listOfCities.length);
+        if (citiesWeatherDetails.size() != listOfCities.length) {
+            System.out.println("There were error in reading some of the cities, the result refer only to " + citiesWeatherDetails.size() + "out of: " + listOfCities.length);
         }
-        System.out.println("The temperature of the city with shortest daylight is: "+ shortestDaylightCity.getTemperature()+ " It is on: "+shortestDaylightCity.getCity()+ " ,Daylight duration in Sec. is: "+ shortestDaylightCity.getCityDaylightDuration());
-        System.out.println("The temperature of the city with longest daylight is: "+longestDaylightCity.getTemperature()+ " It is on: "+longestDaylightCity.getCity()+ " ,Daylight duration in Sec. is: "+ longestDaylightCity.getCityDaylightDuration());
+        System.out.println("The temperature of the city with shortest daylight is: " + shortestDaylightCity.getTemperature() + " It is on: " + shortestDaylightCity.getCity() + " ,Daylight duration in Sec. is: " + shortestDaylightCity.getCityDaylightDuration());
+        System.out.println("The temperature of the city with longest daylight is: " + longestDaylightCity.getTemperature() + " It is on: " + longestDaylightCity.getCity() + " ,Daylight duration in Sec. is: " + longestDaylightCity.getCityDaylightDuration());
     }
 
     private static ArrayList<CityWeatherDetails> getCitiesWeather(String[] listOfCities) {
@@ -60,10 +59,10 @@ class WeatherApplication {
         return citySamples;
     }
 
-    private static boolean isValid(CityWeatherDetails city){
+    private static boolean isValid(CityWeatherDetails city) {
 
         boolean isValid = false;
-        if (city.getTemperature()>=0 &&city.getSunrise()>=0&& city.getSunset()>=0&&city.getCityDaylightDuration()>0){
+        if (city.getTemperature() >= 0 && city.getSunrise() >= 0 && city.getSunset() >= 0 && city.getCityDaylightDuration() > 0) {
 
             isValid = true;
         }
