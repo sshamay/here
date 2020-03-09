@@ -1,9 +1,9 @@
 public class CityWeatherDetails {
 
     private final String city;
-    private final Long sunset;
-    private final Long sunrise;
-    private final Double temperature;
+    private final long sunset;
+    private final long sunrise;
+    private final double temperature;
 
     public CityWeatherDetails(String city, Long sunset, Long sunrise, Double temperature) {
         this.city = city;
@@ -26,11 +26,14 @@ public class CityWeatherDetails {
         return this.temperature;
     }
 
-    public Long getSunset() {
-        return this.sunset;
-    }
 
-    public Long getSunrise() {
-        return this.sunrise;
+    public boolean checkIfValid() {
+        boolean isValid = false;
+        if (this.temperature >= 0 && this.sunrise >= 0 && this.sunset >= 0 && getCityDaylightDuration() > 0) {
+
+            isValid = true;
+        }
+
+        return isValid;
     }
 }

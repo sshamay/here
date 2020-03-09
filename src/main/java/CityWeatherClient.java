@@ -8,33 +8,34 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 class CityWeatherClient {
 
-    private static String url = "https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
+    private static final String url = "https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
 
 
     public static CityWeatherDetails getCityWeather(String city, String appkey) {
 
-        if (city == null || city.isEmpty()|| appkey==null || appkey.isEmpty()) {
+        if (city == null || city.isEmpty() || appkey == null || appkey.isEmpty()) {
             throw new RuntimeException("getCityWeather  params are null or empty");
         }
         String urlFormatted = String.format(url, city, appkey);
         JSONObject myRes = getCityWeather(urlFormatted);
 
         try {
-            JSONObject sys = (JSONObject) myRes.get("sys");
-            Long sunrise = (Long) sys.get("sunrise");
-            Long sunset = (Long) sys.get("sunset");
+            JSONObject sys = (JSONObject) Objects.requireNonNull(myRes).get("sys");
+            long sunrise = (long) sys.get("sunrise");
+            long sunset = (long) sys.get("sunset");
             JSONObject main = (JSONObject) myRes.get("main");
-            Double temperature = (Double) main.get("temp");
+            double temperature = (double) main.get("temp");
             System.out.println("City: " + city + " temperature : " + temperature + " Daylight Duration in seconds : " + (sunset - sunrise));
 
             return new CityWeatherDetails(city, sunset, sunrise, temperature);
 
-        } catch (ClassCastException e) {
-            throw new RuntimeException("There was a problem with one of the City Weather details ", e);
+        } catch (Exception e) {
+            throw new RuntimeException("There was a problem with one of the City Weather details: "+city+ " JSON is: "+myRes, e);
         }
     }
 
@@ -43,7 +44,7 @@ class CityWeatherClient {
 
         HttpResponse response = null;
         final int numOfRetries = 5;
-        Integer SLEEP_TIME = 5000;
+        int SLEEP_TIME = 5000;
 
         String entityText;
 
@@ -80,6 +81,7 @@ class CityWeatherClient {
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    throw new RuntimeException("Could not parse response from website", e);
                 }
             }
         } finally {
